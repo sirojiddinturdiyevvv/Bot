@@ -36,11 +36,14 @@ def check(trueanswers,answers):
     tr=0
     fl = 0
     for i in trueanswers:
-        if trueanswers.get(i) == answers.get(i):
+        if trueanswers.get(i) == answers.get(int(i)):
             text += f"{i}.<b>{trueanswers.get(i)}</b> ✅\n"
             tr+=1
         else:
-            text += f"{i}.{answers.get(i, 'Belgilanmagan')} ❌\n"
+            if answers.get(int(i),None):
+                text += f"{i}.{answers.get(int(i))} ❌\n"
+            else:     
+                text += f"{i}.{answers.get(int(i), 'Belgilanmagan')} ❌\n"
             fl+=1
     all = tr+fl
     score = tr*100 / all
